@@ -278,6 +278,39 @@ get_architecture() {
     echo "${_cputype}-${_ostype}"
 }
 
+install() {
+    need_cmd 'tar'
+    ensure tar -xf "$1"
+
+    # If <path>/bin is in $PATH and $MANPATH is unset, empty, or includes an
+    # empty component (starts with ":", ends with ":", or contains "::"), then
+    # <path>/share/man will automatically be searched for manpages.
+    local bin_path="${HOME}/.local/bin"
+    local man_path="${HOME}/.local/share/man"
+
+    log "Installing zoxide to ${bin_path} ..."
+    ensure mv './zoxide' "${bin_path}/"
+
+    # FIXME: remove in next release
+    mv 'man' 'man1'
+    mkdir 'man'
+    mv 'man1' 'man'
+
+    log "Installing manpages to ${man_path} ..."
+    mkdir -p "${man_path}/man1/"
+    ensure mv './man/man1/'* "${man_path}/man1/"
+
+    # Check that $bin_path is present in $PATH.
+    case ":${PATH:-}:" in
+    *":${bin_path}:"* | *":${bin_path}/:"*) ;;
+    *)
+        log "WARNING: '${bin_path}' is currently not on \$PATH. zoxide will not be available till it is added to \$PATH."
+        ;;
+    esac
+
+    log 'Done.'
+}
+
 main() {
     if [ "${KSH_VERSION:-}" = 'Version JM 93t+ 2010-03-05' ]; then
         # The version of ksh93 that ships with many illumos systems does not
@@ -289,7 +322,7 @@ main() {
     local arch
     arch="$(get_architecture)"
 
-    log "Detected target triple: ${arch}"
+    log "Detected architecture: ${arch}"
 }
 
 # This is enclosed in braces so that nothing is executed until the entire script
