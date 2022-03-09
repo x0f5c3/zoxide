@@ -11,11 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- manpages: moved to `man/man1/*.1`.
+- Manpages: moved to `man/man1/*.1`.
 
 ### Fixed
 
-- Rename `_z` completion function to avoid conflicts with other shell plugins.
+- Bash/Zsh: rename `_z` completion function to avoid conflicts with other shell
+  plugins.
+- Elvish: upgrade to new lambda syntax.
+- Fzf: added `--keep-right` option by default, upgraded minimum version to
+  v0.21.0.
+- Bash: only enable completions on 4.4+.
+- Fzf: bypass `ls` alias in preview window.
+- Retain ownership of database file.
 
 ## [0.8.0] - 2021-12-25
 
@@ -26,7 +33,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Fzf: better default options.
-- Fish: interactive completions are only triggered when the last argument is empty.
+- Fish: interactive completions are only triggered when the last argument is
+  empty.
 - PowerShell: installation instructions.
 
 ### Fixed
@@ -127,7 +135,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Auto-generated shell completions.
 - `zoxide query --all` for listing deleted directories.
-- Lazy deletion for removed directories that have not been accessed in > 90 days.
+- Lazy deletion for removed directories that have not been accessed in > 90
+  days.
 - Nushell: support for 0.32.0+.
 
 ### Fixed
@@ -154,7 +163,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - `cd -` on fish shells.
-- `__zoxide_hook` no longer changes value of `$?` within `$PROMPT_COMMAND` on bash.
+- `__zoxide_hook` no longer changes value of `$?` within `$PROMPT_COMMAND` on
+  bash.
 
 ### Removed
 
@@ -191,7 +201,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `$_ZO_EXCLUDE_DIRS` now supports globs.
-- `zoxide init` now defines `__zoxide_z*` functions that can be aliased as needed.
+- `zoxide init` now defines `__zoxide_z*` functions that can be aliased as
+  needed.
 - Support for the [xonsh](https://xon.sh/) shell.
 - `zoxide import` can now import from Autojump.
 
