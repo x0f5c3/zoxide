@@ -12,3 +12,4 @@ target_nix/
 
 ### Python ###
 .mypy_cache/
+.idea

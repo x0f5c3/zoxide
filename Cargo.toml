@@ -26,6 +26,7 @@ dunce = "1.0.1"
 fastrand = "1.7.0"
 glob = "0.3.0"
 ordered-float = "2.0.0"
+skim = "0.9.4"
 serde = { version = "1.0.116", features = ["derive"] }
 
 [target.'cfg(unix)'.dependencies]

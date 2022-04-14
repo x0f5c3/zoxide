@@ -6,12 +6,29 @@ use std::path::{Component, Path, PathBuf};
 use std::process::Command;
 use std::process::{Child, ChildStdin, Stdio};
 use std::time::SystemTime;
-
+use skim::prelude::*;
 use anyhow::{anyhow, bail, Context, Result};
 
 use crate::config;
 use crate::db::Epoch;
 use crate::error::SilentExit;
+
+pub struct Skim<'a> {
+    sk: skim::SkimOptions<'a>,
+}
+
+
+impl<'a> Skim<'a> {
+    pub fn new() -> Result<Self> {
+        let options = SkimOptionsBuilder::default().build().map_err(|x| anyhow!("Failed to build due to {x}"))?;
+        Ok(Self {
+            sk: options
+        })
+
+
+    }
+}
+
 
 pub struct Fzf {
     child: Child,

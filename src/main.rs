@@ -11,6 +11,7 @@ mod error;
 mod shell;
 mod util;
 
+extern crate skim;
 use std::io::{self, Write};
 use std::{env, process};
 
